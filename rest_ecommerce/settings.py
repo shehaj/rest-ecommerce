@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ik)oxl5h21p*lv40h%^h_h^e@031!t$()s#1%c&gep+b&#8&al
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,8 +46,10 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth',
     'dj_rest_auth.registration',
+    'django_filters',
     # project apps
-    'authentication'
+    'authentication',
+    'products'
 ]
 
 MIDDLEWARE = [
@@ -144,7 +146,9 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+
 }
 
 
@@ -167,3 +171,6 @@ JWT_AUTH_COOKIE = 'jwt-auth'
 JWT_AUTH_REFRESH_COOKIE = 'jwt-refresh'
 
 SITE_ID = 1
+AUTH_USER_MODEL = 'authentication.CustomUser'
+
+CORS_ALLOW_ALL_ORIGINS = True
