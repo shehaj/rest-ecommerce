@@ -1,3 +1,4 @@
+import os
 """
 Django settings for rest_ecommerce project.
 
@@ -47,12 +48,14 @@ INSTALLED_APPS = [
     'dj_rest_auth',
     'dj_rest_auth.registration',
     'django_filters',
+    'corsheaders',
     # project apps
     'authentication',
     'products'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -174,3 +177,7 @@ SITE_ID = 1
 AUTH_USER_MODEL = 'authentication.CustomUser'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/' # 'http://myhost:port/media/'
