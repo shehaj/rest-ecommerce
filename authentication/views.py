@@ -12,4 +12,6 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     filterset_fields = ['is_active']
     search_fields = ['username', 'email']
+    pagination_class = None
+
 
